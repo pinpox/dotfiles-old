@@ -1,0 +1,35 @@
+#!/bin/bash
+
+REPOSITORY=/run/media/binaryplease/TB2/borgbackup/binaryplease-laptop
+#REPOSITORY=username@remoteserver.com:backup
+
+echo "Checking if data partition is mounted"
+if ! grep -qs '/mnt/data' /proc/mounts; then
+    echo "/mnt/data not mounted."
+	exit 1
+fi
+
+# Backup list of installes packages
+echo "Creating package list"
+pacman -Qe > /home/binaryplease/installed_packages_list.txt
+
+# Backup all of /home and /var/www except a few
+# excluded directories
+echo "Creating backup"
+borg create -v --progress --stats            	\
+		--compression lz4																											\
+		$REPOSITORY::'{hostname}-{now:%Y-%m-%d}'    \
+		/etc 																																							\
+		/home                                       \
+		/root																																							\
+		/mnt/data																																			\
+		--exclude '/home/*/.cache'                  \
+		--exclude '*.pyc'
+
+# Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
+# archives of THIS machine. The '{hostname}-' prefix is very important to
+# limit prune's operation to this machine's archives and not apply to
+# other machine's archives also.
+echo "deleting old backups"
+borg prune -v $REPOSITORY --prefix '{hostname}-' \
+		--keep-daily=3 --keep-weekly=2 --keep-monthly=6

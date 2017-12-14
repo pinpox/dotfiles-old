@@ -1,0 +1,423 @@
+
+
+
+call plug#begin('~/.vim/plugged')
+
+" Plug "kopischke/vim-fetch"
+Plug 'farseer90718/vim-taskwarrior'
+Plug 'chrisbra/csv.vim'
+"Plug 'mkarmona/colorsbox'
+" Plug 'gcmt/wildfire.vim'
+"Plug 'kien/ctrlp.vim'
+" Plug 'ngmy/vim-rubocop'
+" Plug 'scrooloose/syntastic'
+" Plug 'skalnik/vim-vroom'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'vim-scripts/dbext.vim'
+Plug 'vim-scripts/RelOps'
+Plug 'hoffstein/vim-tsql'
+Plug 'vimwiki/vimwiki'
+Plug 'godlygeek/tabular'
+Plug 'lukaszkorecki/workflowish'
+Plug 'dag/vim2hs'
+"Plug 'unblevable/quick-scope'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-complete' }
+Plug 'majutsushi/tagbar'
+Plug 'AndrewRadev/switch.vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'felipec/notmuch-vim'
+Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
+Plug 'hdima/python-syntax'
+Plug 'SirVer/ultisnips'
+Plug 'beloglazov/vim-online-thesaurus'
+Plug 'The-NERD-Commenter'
+Plug 'bling/vim-airline'
+Plug 'chriskempson/base16-vim'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
+Plug 'honza/vim-snippets'
+Plug 'jez/vim-superman' " Read man pages
+Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'michaeljsmith/vim-indent-object' "Indention based Textobject (dai, cai...)
+Plug 'suan/vim-instant-markdown' , { 'for': 'markdown' }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-surround'
+Plug 'triglav/vim-visual-increment'
+Plug 'vim-ruby/vim-ruby'
+Plug 'xolox/vim-misc'
+
+Plug 'xuhdev/vim-latex-live-preview'
+
+call plug#end()
+
+
+"=======This Only works in urxvt, setting cursor shape
+
+if &term=~'rxvt' 
+
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+endif
+
+
+"================= Taskwarrior ==============
+let g:task_default_prompt = [ 'project',  'description', 'due']
+
+"================= GENERAL ==============
+
+let g:sql_type_default = "sqlserver"
+
+
+
+
+set scrolloff=5
+set timeoutlen=100
+set showtabline=2
+filetype plugin indent on
+set autoindent " always set autoindenting on
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set cursorline " highlight current line
+set history=50 " keep 50 lines of command line history
+set hlsearch " highlight matches
+set ignorecase
+set incsearch " search as characters are entered
+set laststatus=2 
+set lazyredraw " redraw only when we need to.
+set number
+set ruler " show the cursor position all the time
+set showcmd " display incomplete commands
+set smartcase
+set synmaxcol=150
+set wildmenu
+set wrapscan
+
+map <C-c> "+y<CR> 
+" ctrl-c to "*ygv
+nnoremap <space> za
+
+
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+
+"================= changing cursor for urxvt ===================================
+
+"let &t_SI = "\<Esc>[6 q"
+"let &t_SR = "\<Esc>[4 q"
+"let &t_EI = "\<Esc>[2 q"
+
+
+"================= INDENT XML ===================================
+
+
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()
+
+"================= SHOW LOADED SCIPTS :Scriptnames ==============
+
+
+function! s:Filter_lines(cmd, filter)
+  let save_more = &more
+  set nomore
+  redir => lines
+  silent execute a:cmd
+  redir END
+  let &more = save_more
+  new
+  setlocal buftype=nofile bufhidden=hide noswapfile
+  put =lines
+  g/^\s*$/d
+  %s/^\s*\d\+:\s*//e
+  if !empty(a:filter)
+    execute 'v/' . a:filter . '/d'
+  endif
+  0
+endfunction
+command! -nargs=? Scriptnames call s:Filter_lines('scriptnames', <q-args>)
+
+
+"================= COMPLETATION ==============
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
+
+let g:airline_powerline_fonts = 1
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+    au!
+
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
+
+  augroup END
+
+else
+
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
+nnoremap <C-/> :nohlsearch<CR> " turn off search highlight
+nnoremap Q <Nop>
+autocmd StdinReadPre * let s:std_in=1
+
+set t_Co=256
+
+syntax enable
+set background=dark
+colorscheme vendetta
+"colorscheme colorsbox-stbright
+"colorscheme base16-monokai
+"colorscheme antares
+
+
+"auoindent xml correctly
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+
+"================= JAVA RUN AND COMPILE ==============
+
+
+
+function! CopileAndExecute()
+  if (&ft=='javac')
+    !javac %
+    :!java %:r
+  endif
+
+  if (&ft=='python')
+    !python %
+  endif
+
+  if (&ft=='haskell')
+    !ghc %
+    ":!%:r
+  endif
+endfunction
+
+nnoremap <F5> :call CopileAndExecute()<CR>
+
+"================= NERDTREE ==============
+"nnoremap <C-y> :NERDTreeToggle<CR>
+"let NERDTreeShowHidden=0
+
+
+"=================SWITCH==============
+nnoremap <BS> :Switch<CR>
+let g:switch_custom_definitions =
+    \ [
+    \   ['foo', 'bar', 'baz']
+    \ ]
+
+"=================TAGBAR==============
+nnoremap <F8> :TagbarToggle<CR>
+
+"=================BACKUP AND CLIPBOARD==============
+
+set backupdir=~/.vimtmp
+set directory=~/.vimtmp
+set undodir=~/.vimtmp
+set clipboard=unnamed
+
+"=================LEADER COMMANDS==============
+let mapleader=","
+nnoremap <leader>r :!ruby %<cr>
+nnoremap <leader>cd :lcd %:h <cr> 
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
+
+
+"==============Ctrlp=============
+
+nnoremap <C-p> :CtrlP<CR>
+let g:ctrlp_working_path_mode = 'c'
+
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .vimtmp
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ --ignore "**/*.jar"
+      \ -g ""'
+
+" ag is fast enough that CtrlP doesn't need to cache
+"let g:ctrlp_use_caching = 0
+"==============AUTOFORMAT=============
+function! Myfunc()
+  :%s/\n\{3,}/\r\r/e
+  :Autoformat
+endfunction
+
+nnoremap <F6> :call Myfunc()<CR>
+
+"===============MOVING LINES=============
+" Normal mode
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+
+" Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+
+" Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+"===============VIMRC FILE=================
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+"============KEY REMAPS====================
+
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+"===================WILDFIRE================
+
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "ir"]
+
+" Remove any introduced trailing whitespace after moving...     
+let g:DVB_TrimWS = 1
+
+"==============RUBY BLOCK SELECT======================
+runtime macros/matchit.vim
+set nocompatible
+if has("autocmd")
+  filetype indent plugin on
+endif
+
+"===================RUBOCOP==================
+function! FormatRuby()
+  w
+  silent !/home/binaryplease/.rvm/gems/jruby-1.7.20/wrappers/rubocop --auto-correct %
+  e 
+  "RuboCop
+endfunction
+
+
+
+nnoremap <F7> :call FormatRuby()<CR>
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:vimrubocop_config = '~/.rubocop.yml'
+let g:vimrubocop_rubocop_cmd = 'rubocop --auto-correct '
+
+
+
+set tabstop=2 shiftwidth=2 expandtab
+
+
+"=====================CTAGS================================
+
+" Searches for tags file in current folder and works its way up to
+" root looking for one.
+map <Leader>tt :!ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*<CR><CR>
+
+set tags=./tags;/
+
+
+"=====================Transparent back================================
+if has('gui_running')
+else
+
+  hi Normal guibg=NONE ctermbg=NONE
+endif
+
+"===================== DBEXT CONNECTIONS ================================
+" MySQL
+let g:dbext_default_profile_mysql_local_test = 'type=MYSQL:user=binaryplease:passwd=hallo:dbname=test'
+" Microsoft SQL Server
+"let g:dbext_default_profile_microsoft_production = 'type=SQLSRV:user=sa:passwd=whatever:host=localhost'
+
+
+
+
+let python_highlight_all = 1
