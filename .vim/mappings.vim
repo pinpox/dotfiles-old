@@ -13,6 +13,7 @@ let mapleader=","
 " open a file using fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>t :Tags<CR>
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <leader>l :set wrap!<CR> "toggle line wrapping
 nnoremap <leader>` :<CR>!<CR>
@@ -22,3 +23,7 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 xmap ga <Plug>(EasyAlign) " Start interactive EasyAlign in visual mode (e.g. vipga)
 nmap ga <Plug>(EasyAlign) " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+
+" Cycle buffers
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>

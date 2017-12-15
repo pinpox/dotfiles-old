@@ -9,6 +9,7 @@ call plug#end()
 filetype plugin indent on
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set hidden                     " Buffer becomes hidden when it is abandoned but is not unloaded
+set autochdir                  " Automatically change the working dir to the one of the file
 set autoindent                 " always set autoindenting on
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set clipboard=unnamedplus      " Set Clipboard to system's clipboard
@@ -45,6 +46,9 @@ syntax enable                  " enable syntax highlighting
 "
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null "autoindent xml correctly
 autocmd! BufWritePost * Neomake " run neomake on file save
+
+" Default file type for .tex files
+let g:tex_flavor = "latex"
 
 " Cursor to last know position
 if has("autocmd")
