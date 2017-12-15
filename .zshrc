@@ -151,3 +151,6 @@ function extract {
 
 #mktar_serial() { name="${${1:t}:r}"; tar cfJ "$name".tar.xz "$@"; }
 mktar() { name="${${1:t}:r}"; tar -I pxz -cf "$name".tar.xz "$@"; }
+
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
