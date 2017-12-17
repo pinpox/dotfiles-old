@@ -25,6 +25,7 @@ function setup_dotfiles() {
 	config checkout
 	config config status.showUntrackedFiles no
 }
+
 function set_zsh() {
 	read -p "Change shell to zsh? [Y/n]" -n 1 -r
 	echo
@@ -33,7 +34,6 @@ function set_zsh() {
 		chsh -s /bin/zsh
 	fi
 }
-
 
 function setup_vim() {
 	if type "nvim" > /dev/null
@@ -46,6 +46,7 @@ function setup_vim() {
 		echo "Vim/Neovim doesn't seem to be installed"
 	fi
 }
+
 setup_dotfiles
 setup_vim
 # set_zsh
