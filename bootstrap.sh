@@ -21,7 +21,8 @@ function setup_dotfiles() {
 	echo "$CONF_DIR_NAME" >> .gitignore
 	mkdir -p .config-backup
 	echo "Backing up pre-existing dot files.";
-	config checkout 2>&1 | grep '^\s' | awk {'print $1'} | backup_conf
+	# config checkout 2>&1 | grep '^\s' | awk {'print $1'} | backup_conf
+	config checkout 2>&1 | awk '/^\s/{print $1}' | backup_conf
 	config checkout
 	config config status.showUntrackedFiles no
 }
@@ -48,7 +49,7 @@ function setup_vim() {
 }
 
 setup_dotfiles
-setup_vim
+#setup_vim
 # set_zsh
 
 
