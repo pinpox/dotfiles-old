@@ -1,7 +1,19 @@
 #!/bin/bash
-
 GIT_REPO="https://gitlab.com/binaryplease/dotfiles.git"
 CONF_DIR_NAME=".dotfiles"
+
+function backup_conf() {
+	while read fn
+	do
+		echo "working on $fn"
+		con="$(dirname $fn)"
+		con=".config-backup/$con"
+		echo "creating $con"
+		mkdir -p $con
+		echo "moving $fn to $(realpath	$con)"
+		mv $fn $(realpath $con)
+	done
+}
 
 function set_dotfiles() {
 	cd ~
@@ -11,18 +23,11 @@ function set_dotfiles() {
 	}
 	echo "$CONF_DIR_NAME" >> .gitignore
 	mkdir -p .config-backup
-	config checkout
-	if [ $? = 0 ]; then
-		echo "Checked out config.";
-	else
-		echo "Backing up pre-existing dot files.";
-		config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-	fi;
+	echo "Backing up pre-existing dot files.";
+	config checkout 2>&1 | grep '^\s' | awk {'print $1'} | backup_conf
 	config checkout
 	config config status.showUntrackedFiles no
 }
-
-
 function set_zsh() {
 	read -p "Change shell to zsh? [Y/n]" -n 1 -r
 	echo
@@ -31,6 +36,7 @@ function set_zsh() {
 		chsh -s /bin/zsh
 	fi
 }
-
 set_dotfiles
-set_zsh
+# set_zsh
+
+
