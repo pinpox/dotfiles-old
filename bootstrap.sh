@@ -5,17 +5,14 @@ CONF_DIR_NAME=".dotfiles"
 function backup_conf() {
 	while read fn
 	do
-		echo "working on $fn"
 		con="$(dirname $fn)"
 		con=".config-backup/$con"
-		echo "creating $con"
 		mkdir -p $con
-		echo "moving $fn to $(realpath	$con)"
 		mv $fn $(realpath $con)
 	done
 }
 
-function set_dotfiles() {
+function setup_dotfiles() {
 	cd ~
 	git clone --bare $GIT_REPO $HOME/$CONF_DIR_NAME
 	function config {
@@ -36,7 +33,21 @@ function set_zsh() {
 		chsh -s /bin/zsh
 	fi
 }
-set_dotfiles
+
+
+function setup_vim() {
+	if type "nvim" > /dev/null
+	then
+		nvim -c 'PlugClean|PlugInstall|qa'
+	elif type "vim" > /dev/null
+	then
+		vim -c 'PlugClean|PlugInstall|qa'
+	else
+		echo "Vim/Neovim doesn't seem to be installed"
+	fi
+}
+setup_dotfiles
+setup_vim
 # set_zsh
 
 
