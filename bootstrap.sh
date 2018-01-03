@@ -48,6 +48,7 @@ function setup_vim() {
 }
 
 setup_dotfiles
+tic -x termite.terminfo
 #setup_vim
 # set_zsh
 
