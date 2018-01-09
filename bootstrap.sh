@@ -1,9 +1,18 @@
 #!/bin/bash
-
-GIT_REPO="https://gitlab.com/binaryplease/dotfiles.git"
+GIT_REPO="git@gitlab.com:binaryplease/dotfiles.git"
 CONF_DIR_NAME=".dotfiles"
 
-function set_dotfiles() {
+function backup_conf() {
+	while read fn
+	do
+		con="$(dirname $fn)"
+		con=".config-backup/$con"
+		mkdir -p $con
+		mv $fn $(realpath $con)
+	done
+}
+
+function setup_dotfiles() {
 	cd ~
 	git clone --bare $GIT_REPO $HOME/$CONF_DIR_NAME
 	function config {
@@ -11,17 +20,11 @@ function set_dotfiles() {
 	}
 	echo "$CONF_DIR_NAME" >> .gitignore
 	mkdir -p .config-backup
-	config checkout
-	if [ $? = 0 ]; then
-		echo "Checked out config.";
-	else
-		echo "Backing up pre-existing dot files.";
-		config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-	fi;
+	echo "Backing up pre-existing dot files.";
+	config checkout 2>&1 | awk '/^[[:space:]]/{print $1}' | backup_conf
 	config checkout
 	config config status.showUntrackedFiles no
 }
-
 
 function set_zsh() {
 	read -p "Change shell to zsh? [Y/n]" -n 1 -r
@@ -32,5 +35,21 @@ function set_zsh() {
 	fi
 }
 
-set_dotfiles
-set_zsh
+function setup_vim() {
+	if type "nvim" > /dev/null
+	then
+		nvim -c 'PlugClean|PlugInstall|qa'
+	elif type "vim" > /dev/null
+	then
+		vim -c 'PlugClean|PlugInstall|qa'
+	else
+		echo "Vim/Neovim doesn't seem to be installed"
+	fi
+}
+
+setup_dotfiles
+tic -x termite.terminfo
+#setup_vim
+# set_zsh
+
+
