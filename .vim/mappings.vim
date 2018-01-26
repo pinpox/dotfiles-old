@@ -17,6 +17,7 @@ nnoremap <leader>t :Tags<CR>
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <leader>l :set wrap!<CR> "toggle line wrapping
 nnoremap <leader>` :<CR>!<CR>
+nnoremap <leader>a ]sz=
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
