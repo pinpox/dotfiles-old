@@ -31,6 +31,7 @@ exec_always  --no-startup-id xbindkeys -f .xbindkeys_config/speed_c/pablo
 #exec_always setxkbmap -option "caps:escape"
 exec_always setxkbmap -layout us -variant altgr-intl -option compose:menu -option "caps:escape"
 exec_always nitrogen --restore
+exec twmnd
 exec nm-applet
 exec blueman-applet
 exec_always ~/.local/bin/launch_polybar
