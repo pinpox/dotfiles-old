@@ -1,5 +1,5 @@
 #!/bin/bash
-GIT_REPO="git@gitlab.com:binaryplease/dotfiles.git"
+GIT_REPO="https://gitlab.com/binaryplease/dotfiles/"
 CONF_DIR_NAME=".dotfiles"
 
 function backup_conf() {
