@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/run/media/binaryplease/TB2/borgbackup/binaryplease-laptop
+REPOSITORY=/run/media/binaryplease/TB2/borgbackup/binary-server
 #REPOSITORY=username@remoteserver.com:backup
 
 # Backup list of installes packages
