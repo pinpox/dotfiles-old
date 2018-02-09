@@ -42,12 +42,7 @@ set wrapscan                   " Wrap when searching to beginning
 set path+=**                   " Search down into subfolders, provides tab-completion for all file-related tasks
 syntax enable                  " enable syntax highlighting
 
-" FILETYPE-SPECIFIC OPTIONS:
-"
-au BufNewFile,BufRead,BufEnter   *.tex    :source ~/.vim/options_tex.vim
-
 " MISC:
-"
 "
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null "autoindent xml correctly
 autocmd! BufWritePost * Neomake " run neomake on file save
