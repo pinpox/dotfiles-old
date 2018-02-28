@@ -48,7 +48,8 @@ font-0 = "Ubuntu Mono"
 font-2 = "Wuncon siji:pixelsize=10;1"
 font-1 = "font awesome"
 
-modules-left = i3
+; modules-left = i3
+modules-left = bspwm
 modules-center = music
 modules-right = weather filesystem backlight-acpi volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
@@ -96,7 +97,7 @@ font-0 = "Ubuntu Mono"
 font-2 = "Wuncon siji:pixelsize=10;1"
 font-1 = "font awesome"
 
-modules-left = i3
+modules-left = bspwm i3
 modules-center = music
 modules-right = pkg weather filesystem backlight-acpi volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 

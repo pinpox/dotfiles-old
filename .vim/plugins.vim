@@ -1,13 +1,19 @@
 " Plug 'chrisbra/csv.vim'                                         " Csv filetype
 " Plug 'davinche/godown-vim'
 " Plug 'jiangmiao/auto-pairs'                                     " Auto-close brackets
-" Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
+
+Plug 'kovetskiy/sxhkd-vim'										  "  sxhkd - Simple X hotkey daemon
 " Plug 'reewr/vim-monokai-phoenix'                                " Colortheme
 " Plug 'tclem/vim-arduino'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }          " Latex preview Plug
+" Plug 'vim-latex/vim-latex'
+
 Plug 'AndrewRadev/switch.vim'                                     " Switch segments of text with predefined replacements
 Plug 'ap/vim-buftabline'                                          " Forget Vim tabs, now you can have buffer tabs 
 Plug 'Chiel92/vim-autoformat'                                     " Autoformat files integrating existing code formatters
+Plug 'vim-scripts/BufOnly.vim'									  " Close all buffers except the current
+
 Plug 'OrangeT/vim-csharp', {'for': 'cs'}                          " Csharp syntax
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}                " I3-config syntax
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}       " Autocompletion

@@ -19,7 +19,8 @@ setxkbmap -layout us -variant altgr-intl -option compose:menu -option "caps:esca
 xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK
-exec i3
+# exec i3
+exec bspwm
 #exec dbus-launch xmonad
 
 # exec gnome-session
