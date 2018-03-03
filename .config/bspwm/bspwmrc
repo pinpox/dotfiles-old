@@ -1,0 +1,35 @@
+#! /bin/sh
+
+sxhkd &
+~/.local/bin/launch_polybar &
+nitrogen --restore &
+xsetroot -cursor_name left_ptr
+nm-applet &
+srandrd display_handler &
+blueman-applet &
+twmnd &
+
+bspc config border_width         4
+bspc config window_gap           5
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^1'
+# bspc rule -a Spotify desktop='^10'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
+
+# # bspc monitor -d I II III IV V VI VII VIII IX X
+# for monitor in $(bspc query -M); do
+#     bspc monitor $monitor -d 1 2 3 4
+# done
+
+
+
+bspc monitor LVDS-0 -d 1 2 3 4 5
+bspc monitor HDMI-0 -d 6 7 8 9 0

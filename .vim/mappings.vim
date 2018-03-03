@@ -23,7 +23,7 @@ nnoremap <F5> ]s
 nnoremap <F6> 1z=
 nnoremap <F7> z=
 nnoremap <F8> :spellr<CR>
-nnoremap <F9> zg
+" nnoremap <F9> zg
 
 nnoremap <left> <nop>
 nnoremap <right> <nop>
