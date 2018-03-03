@@ -5,6 +5,7 @@
 " Plug 'reewr/vim-monokai-phoenix'                                " Colortheme
 " Plug 'tclem/vim-arduino'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }          " Latex preview Plug
+Plug 'lukaszkorecki/workflowish'
 Plug 'AndrewRadev/switch.vim'                                     " Switch segments of text with predefined replacements
 Plug 'ap/vim-buftabline'                                          " Forget Vim tabs, now you can have buffer tabs 
 Plug 'Chiel92/vim-autoformat'                                     " Autoformat files integrating existing code formatters
