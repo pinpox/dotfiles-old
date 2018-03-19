@@ -82,17 +82,12 @@ zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#BASE16_SHELL=$HOME/.config/base16-shell/
-#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 transfer() {
 	if [ $# -eq 0 ]; then
 		echo -e "Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md";
 		return 1
 	fi
-
 	tmpfile=$( mktemp -t transferXXX )
-
 	if tty -s; then
 		basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
 		curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile
@@ -102,8 +97,6 @@ transfer() {
 	cat $tmpfile
 	rm -f $tmpfile
 }
-
-
 
 # fkill - kill process
 fkill() {
@@ -154,3 +147,5 @@ mktar() { name="${${1:t}:r}"; tar -I pxz -cf "$name".tar.xz "$@"; }
 
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

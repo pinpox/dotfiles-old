@@ -2,6 +2,9 @@
 # wm independent hotkeys
 #
 
+super + shift + x
+	.local/bin/lock
+
 # terminal emulator
 super + Return
 	termite

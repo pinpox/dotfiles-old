@@ -19,8 +19,8 @@ setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "
 xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK
-# exec i3
-exec bspwm
+exec i3
+# exec bspwm
 #exec dbus-launch xmonad
 
 # exec gnome-session

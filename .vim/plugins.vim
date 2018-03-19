@@ -4,6 +4,7 @@
 Plug 'lervag/vimtex'
 
 Plug 'kovetskiy/sxhkd-vim'										  "  sxhkd - Simple X hotkey daemon
+  Plug 'rakr/vim-one'												  " Colorscheme
 " Plug 'reewr/vim-monokai-phoenix'                                " Colortheme
 " Plug 'tclem/vim-arduino'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }          " Latex preview Plug
