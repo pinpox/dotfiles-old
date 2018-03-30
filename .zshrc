@@ -36,13 +36,11 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 export EDITOR=/usr/bin/nvim
 export GOPATH=~/.go
 export PATH="$PATH:\
-	/home/binaryplease/.gem/ruby/2.2.0/bin:\
-	/home/binaryplease/.gem/ruby/2.3.0/bin:\
-	/home/binaryplease/.gem/ruby/2.4.0/bin:\
 	/usr/bin/core_perl:\
 	/usr/bin/site_perl:\
 	/usr/bin/vendor_perl:\
 	/usr/bin:\
+	~/.go/bin:\
 	/usr/lib/jvm/default/bin:\
 	/usr/local/bin:\
 	.local/bin:\
@@ -149,3 +147,6 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME=$HOME/.gem

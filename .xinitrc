@@ -15,7 +15,7 @@ export TERMINAL=termite
 xrdb ~/.Xresources
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 #setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
-setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
+# setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
 xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK

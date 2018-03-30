@@ -27,9 +27,11 @@ new_float pixel 2
 #exec compton --backend glx
 exec srandrd display_handler
 exec_always  --no-startup-id xbindkeys -f .xbindkeys_config/speed_c/pablo
-#exec_always setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
+# exec_always setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
 #exec_always setxkbmap -option "caps:escape"
-exec_always setxkbmap -layout us -variant altgr-intl -option compose:menu -option "caps:escape"
+# exec_always setxkbmap -layout us -variant altgr-intl -option compose:menu -option "caps:escape"
+exec_always setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_toggle -option "caps:escape"
+
 exec_always nitrogen --restore
 exec twmnd
 exec nm-applet

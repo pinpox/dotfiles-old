@@ -56,4 +56,5 @@ Plug 'triglav/vim-visual-increment'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/Align'                                          " Dependency for sqlformatter
 Plug 'vimwiki/vimwiki'
+Plug 'rhysd/vim-grammarous'
 Plug 'zchee/deoplete-clang'
