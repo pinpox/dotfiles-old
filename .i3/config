@@ -38,6 +38,8 @@ exec nm-applet
 exec blueman-applet
 exec_always ~/.local/bin/launch_polybar
 
+bindsym --release $mod+n exec  xdotool type --clearmodifiers --window $(xdotool getwindowfocus) '¯\_(ツ)_/¯'
+
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
 
@@ -172,6 +174,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
+bindsym --release $mod+shift+minus exec  xdotool type --clearmodifiers --window $(xdotool getwindowfocus) '¯\_(ツ)_/¯'
 for_window [class="^.*"] border pixel 2
 gaps inner 6
 gaps outer 0

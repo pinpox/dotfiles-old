@@ -28,10 +28,6 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
-bindkey "$terminfo[kcud1]" down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
 
 export EDITOR=/usr/bin/nvim
 export GOPATH=~/.go
@@ -65,6 +61,22 @@ zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug "arzzen/calc.plugin.zsh"
 zplug "rupa/z", use:z.sh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/colorize", from:oh-my-zsh
+zplug "lib/colored-man-pages", from:oh-my-zsh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# Also prezto
+zplug "modules/environment", from:prezto
+zplug "modules/terminal", from:prezto
+zplug "modules/editor", from:prezto
+zplug "modules/history", from:prezto
+zplug "modules/directory", from:prezto
+zplug "modules/spectrum", from:prezto
+zplug "modules/utility", from:prezto
+zplug "modules/completion", from:prezto
+zplug "lib/completion", from:oh-my-zsh, ignore:oh-my-zsh.sh
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -78,6 +90,10 @@ fi
 
 zplug load
 
+bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
+bindkey "$terminfo[kcud1]" down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 transfer() {
