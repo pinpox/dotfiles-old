@@ -20,7 +20,8 @@ Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}                " I3-config sy
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}       " Autocompletion
 Plug 'SirVer/ultisnips'                                           " Snippet engine
 Plug 'airblade/vim-gitgutter'                                     " Shows a git diff in the gutter
-Plug 'benekastah/neomake'                                         " Linter/maker
+" Plug 'benekastah/neomake'                                         " Linter/maker
+Plug 'w0rp/ale'
 Plug 'bling/vim-airline'                                          " Lean & mean status/tabline
 Plug 'buoto/gotests-vim'                                          " Generate test for Go function in current line
 Plug 'chriskempson/base16-vim'                                    " Base16 colorschemes
@@ -58,3 +59,7 @@ Plug 'vim-scripts/Align'                                          " Dependency f
 Plug 'vimwiki/vimwiki'
 Plug 'rhysd/vim-grammarous'
 Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-go'
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
+
