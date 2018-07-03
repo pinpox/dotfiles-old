@@ -259,8 +259,22 @@ client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base08
 
 
-bindsym $mod+p exec rofi -show run SuperL-p -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base0D" -bg `$base01` -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
-bindsym $mod+Shift+p exec rofi -show edit SuperL-Shift-p -modi "edit:/home/binaryplease/.local/bin/rofi-fmenu,run,ssh,window" -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base00" -bg "$base01" -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
+bindsym $mod+p exec dmenu_run \
+-i \
+-p "run: " \
+-l 16 \
+-w 700 -h 20 \
+-x 523 -y 274 \
+-dim 0.4 \
+-fn 'Ubuntu Mono-10' \
+-nb "$base00" \
+-nf "$base07" \
+-sb "$base02" \
+-sf "$base0D" \
+-dc "$base00"
+
+bindsym $mod+Shift+p exec rofi -show run SuperL-p -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base0D" -bg `$base01` -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
+# bindsym $mod+Shift+p exec rofi -show edit SuperL-Shift-p -modi "edit:/home/binaryplease/.local/bin/rofi-fmenu,run,ssh,window" -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base00" -bg "$base01" -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
 bindsym $mod+n exec nmcli_dmenu
 
 #bar {
