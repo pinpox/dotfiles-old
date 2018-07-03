@@ -44,8 +44,13 @@ syntax enable                  " enable syntax highlighting
 
 " MISC:
 "
+let g:go_auto_type_info = 1 "Show Go type info of variables
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null "autoindent xml correctly
-autocmd! BufWritePost * Neomake " run neomake on file save
+
+au BufRead,BufNewFile *.md setlocal textwidth=80 " Wrap markdown files to 80 chars per line
+" autocmd! BufWritePost * Neomake " run neomake on file save
+
+autocmd Filetype rmd map <F8> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 " Default file type for .tex files
 let g:tex_flavor = "latex"
