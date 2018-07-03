@@ -1,4 +1,8 @@
-smb://com_nas/committance_market/
+sftp://zitrone/home/binaryplease zitrone
+sftp://tomate/home/binaryplease tomate
+sftp://kartoffel/home/binaryplease kartoffel
+sftp://sellerie/home/binaryplease sellerie
+smb://com_nas/committance_market/ committance_market
 file:///mnt/data
 sftp://root@85.214.140.27/
 sftp://cafea@bootes.uberspace.de/home/cafea
