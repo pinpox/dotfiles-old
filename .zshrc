@@ -166,3 +166,4 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export GEM_HOME=$HOME/.gem
+[ -f ~/.fzf.colors ] && source ~/.fzf.colors

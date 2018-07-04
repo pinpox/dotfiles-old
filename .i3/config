@@ -158,17 +158,17 @@ mode "resize" {
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
 	bindsym j resize shrink width 10 px or 10 ppt
-	bindsym k resize grow height 10 px or 10 ppt
-	bindsym l resize shrink height 10 px or 10 ppt
-	bindsym semicolon resize grow width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym l resize shrink height 10 px or 10 ppt
+		bindsym semicolon resize grow width 10 px or 10 ppt
 # same bindings, but for the arrow keys
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
 # back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -181,121 +181,28 @@ gaps outer 0
 smart_gaps on
 smart_borders no_gaps
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-#molokai
-##set $base01 #383830
-#set $base00 #272822
-#set $base01 #010a0c
-#set $base02 #49483e
-#set $base03 #75715e
-#set $base04 #a59f85
-#set $base05 #f8f8f2
-#set $base06 #f5f4f1
-#set $base07 #f9f8f5
-#set $base08 #f92672
-#set $base09 #fd971f
-#set $base0A #f4bf75
-#set $base0B #a6e22e
-#set $base0C #a1efe4
-#set $base0D #66d9ef
-#set $base0E #ae81ff
-#set $base0F #cc6633
-
-## class                 border  backgr. text    indicator
-#client.focused			$base0D $base0D $base00 $base01
-#client.focused_inactive $base02 $base02 $base03 $base01
-#client.unfocused		$base01 $base01 $base03 $base01
-#client.urgent		$base02 $base08 $base07 $base08
-
-
-
-
-# Base16 Flat by Chris Kempson (http://chriskempson.com)
-# template by Matt Parnell, @parnmatt
-
-set $base00 #2C3E50
-set $base01 #34495E
-set $base02 #7F8C8D
-set $base03 #95A5A6
-set $base04 #BDC3C7
-set $base05 #e0e0e0
-set $base06 #f5f5f5
-set $base07 #ECF0F1
-set $base08 #E74C3C
-set $base09 #E67E22
-set $base0A #F1C40F
-set $base0B #2ECC71
-set $base0C #1ABC9C
-set $base0D #3498DB
-set $base0E #9B59B6
-set $base0F #be643c
-
-
-
-
-set $base00 #181818
-set $base01 #282828
-set $base02 #383838
-set $base03 #585858
-set $base04 #b8b8b8
-set $base05 #d8d8d8
-set $base06 #e8e8e8
-set $base07 #f8f8f8
-set $base08 #ab4642
-set $base09 #dc9656
-set $base0A #f7ca88
-set $base0B #a1b56c
-set $base0C #86c1b9
-set $base0D #7cafc2
-set $base0E #ba8baf
-set $base0F #a16946
-
+set_from_resource $base00 color0 #00ff00
+set_from_resource $base01 color10 #00ff00
+set_from_resource $base02 color11 #00ff00
+set_from_resource $base03 color8 #00ff00
+set_from_resource $base04 color12 #00ff00
+set_from_resource $base05 color7 #00ff00
+set_from_resource $base06 color13 #00ff00
+set_from_resource $base07 color15 #00ff00
+set_from_resource $base08 color1 #00ff00
+set_from_resource $base09 color9 #00ff00
+set_from_resource $base0A color3 #00ff00
+set_from_resource $base0B color2 #00ff00
+set_from_resource $base0C color6 #00ff00
+set_from_resource $base0D color4 #00ff00
+set_from_resource $base0E color5 #00ff00
+set_from_resource $base0F color14 #00ff00
 
 client.focused $base0D $base0D $base00 $base01
 client.focused_inactive $base02 $base02 $base03 $base01
 client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base08
 
-
-bindsym $mod+p exec dmenu_run \
--i \
--p "run: " \
--l 16 \
--w 700 -h 20 \
--x 523 -y 274 \
--dim 0.4 \
--fn 'Ubuntu Mono-10' \
--nb "$base00" \
--nf "$base07" \
--sb "$base02" \
--sf "$base0D" \
--dc "$base00"
-
-bindsym $mod+Shift+p exec rofi -show run SuperL-p -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base0D" -bg `$base01` -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
-# bindsym $mod+Shift+p exec rofi -show edit SuperL-Shift-p -modi "edit:/home/binaryplease/.local/bin/rofi-fmenu,run,ssh,window" -lines 7 -eh 3 -opacity 80 -bw 0 -bc "$base00" -bg "$base01" -hlbg "$base01" -hlfg "$base0D" -fg "$base07"
-bindsym $mod+n exec nmcli_dmenu
-
-#bar {
-
-#colors {
-
-#separator $base03
-#background $base01
-#statusline $base05
-#focused_workspace $base0C $base0D $base00
-#active_workspace $base02 $base02 $base07
-#inactive_workspace $base01 $base01 $base03
-#urgent_workspace $base08 $base08 $base07
-
-
-
-#}
-
-#status_command    python ~/.i3_status.py
-##    position          top
-#workspace_buttons yes
-#}
+bindsym $mod+p exec rofi -show combi -lines 7 -eh 3 -bw 0
 
 # vim:filetype=i3

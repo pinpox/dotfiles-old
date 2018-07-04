@@ -47,9 +47,38 @@ function setup_vim() {
 	fi
 }
 
+function install_base16_manager() {
+	base16-manager install 0xdec/base16-rofi
+	base16-manager instajj chriskempson/base16-vim
+	base16-manager instajj chriskempson/base16-xresources
+	base16-manager instajj khamer/base16-dunst
+	base16-manager instajj khamer/base16-termite
+	base16-manager instajj nicodebo/base16-fzf
+}
+
+function check_dependencies() {
+	declare -a arr=("git" "base16-manager" "nvim")
+
+	## now loop through the above array
+	for i in "${arr[@]}"
+	do
+		if ! [ -x "$(command -v $i)" ]; then
+			echo "Error: $i is not installed." >&2
+			exit 1
+		fi
+	done
+}
+
+function setup_colors() {
+	#function_body
+	base16-manager set materia
+}
+
+check_dependencies
 setup_dotfiles
+setup_vim
+set_zsh
+setup_colors
 tic -x termite.terminfo
-#setup_vim
-# set_zsh
 
 

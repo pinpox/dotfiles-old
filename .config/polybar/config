@@ -8,15 +8,13 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #262626
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color10:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color11:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color1:#222}
+alert = ${xrdb:color1:#222}
 
 [bar/secondary]
 bottom = true
@@ -49,7 +47,7 @@ font-2 = "Wuncon siji:pixelsize=10;1"
 font-1 = "font awesome"
 
 ; modules-left = i3
-modules-left = bspwm
+modules-left = 
 modules-center = music
 modules-right = weather filesystem backlight-acpi volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
@@ -97,7 +95,7 @@ font-0 = "Ubuntu Mono"
 font-2 = "Wuncon siji:pixelsize=10;1"
 font-1 = "font awesome"
 
-modules-left = bspwm i3
+modules-left = i3
 modules-center = music
 modules-right = pkg weather filesystem backlight-acpi volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
@@ -142,9 +140,11 @@ format-mounted-underline = #8c9696
 type = internal/fs
 interval = 25
 
+format-prefix = " "
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%% [%free%]
+label-mounted =  %mountpoint%%{F-}: %percentage_used%% [%free%]
+format-prefix-foreground = ${colors.foreground-alt}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -266,7 +266,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -288,7 +288,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp3s0
+interface = enp0s25
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -344,7 +344,7 @@ ramp-volume-2 = 
 
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = ACAD
 full-at = 98
 
@@ -379,8 +379,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
