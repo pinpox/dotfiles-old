@@ -10,6 +10,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	done
 	unset f
 fi
+
 xset r rate 200 100
 export TERMINAL=termite
 xrdb ~/.Xresources
@@ -20,24 +21,8 @@ xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK
 exec i3
-# exec bspwm
-#exec dbus-launch xmonad
 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
-#rdb -merge .Xresources
+if [ -x /usr/bin/nm-applet ] ; then
+nm-applet --sm-disable &
+fi
 
-# Set up an icon tray
-#stalonetray &
-
-# Fire up apps
-
-#xscreensaver -no-splash &
-
-#if [ -x /usr/bin/nm-applet ] ; then
-#nm-applet --sm-disable &
-#fi
-
-#exec xmonad
