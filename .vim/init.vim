@@ -85,7 +85,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:deoplete#enable_at_startup = 1		" Use deoplete.
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 let g:arduino_programmer = 'arduino:avrispmkii'                 " arduino programmer
 let g:arduino_dir = '/usr/share/arduino'
 let g:arduino_args = '--verbose-upload'
