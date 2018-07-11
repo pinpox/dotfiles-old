@@ -21,6 +21,7 @@ alias weather='curl -4 http://wttr.in/Koeln'
 alias qr_gen="qrencode -t ansi -o-"
 alias cats='highlight -O ansi'
 alias pupdate='sudo pacman -Syu'
+alias top='htop'
 alias get_esp32="export PATH=$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 
 # History search

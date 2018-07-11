@@ -16,55 +16,6 @@ primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color1:#222}
 alert = ${xrdb:color1:#222}
 
-[bar/secondary]
-bottom = true
-monitor = LVDS-0
-width = 100%
-height = 22
-;offset-x = 1%
-;offset-y = 1%
-radius = 0
-fixed-center = false
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #00000000
-
-
-padding-left = 0
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = "Ubuntu Mono"
-font-2 = "Wuncon siji:pixelsize=10;1"
-font-1 = "font awesome"
-
-; modules-left = i3
-modules-left = 
-modules-center = music
-modules-right = weather filesystem backlight-acpi volume xkeyboard memory cpu wlan eth battery temperature date powermenu
-
-tray-position = right
-tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 [bar/primary]
 bottom = true
 monitor = ${env:MONITOR}
@@ -91,7 +42,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Ubuntu Mono"
+font-0 = "Ubuntu Mono:pixelsize=11;0"
 font-2 = "Wuncon siji:pixelsize=10;1"
 font-1 = "font awesome"
 

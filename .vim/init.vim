@@ -100,7 +100,6 @@ let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head
 
 " APPEARANCE:
 "
-let g:airline_theme = "gruvbox"
 hi Normal ctermfg=252 ctermbg=none
 let base16colorspace=256
 set background=dark " for the dark version
@@ -141,7 +140,7 @@ let g:deoplete#omni_patterns.tex =
             \ . ')\m'
 
 let g:one_allow_italics = 1 " I love italic for comments
-let g:airline_theme='one'
+" let g:airline_theme='one'
 source ~/.config/nvim/colorscheme.vim
 
 if filereadable(expand("~/.vimrc_background"))
