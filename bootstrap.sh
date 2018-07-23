@@ -70,7 +70,15 @@ function check_dependencies() {
 }
 
 function setup_colors() {
-	#function_body
+	mkdir -p .config/rofi
+	mkdir -p .Xresources.d
+
+	base16-manager install nicodebo/base16-fzf
+	base16-manager install 0xdec/base16-rofi
+	base16-manager install chriskempson/base16-vim
+	base16-manager install chriskempson/base16-xresources
+	base16-manager install khamer/base16-termite
+	base16-manager install khamer/base16-dunst
 	base16-manager set materia
 }
 
