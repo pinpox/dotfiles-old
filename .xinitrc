@@ -20,6 +20,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK
+xbindkeys
 exec i3
 
 if [ -x /usr/bin/nm-applet ] ; then
