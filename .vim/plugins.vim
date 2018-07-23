@@ -5,6 +5,7 @@ Plug 'lervag/vimtex'
 
 Plug 'kovetskiy/sxhkd-vim'										  "  sxhkd - Simple X hotkey daemon
 " Plug 'rakr/vim-one'												  " Colorscheme
+Plug 'jamessan/vim-gnupg'
 " Plug 'reewr/vim-monokai-phoenix'                                " Colortheme
 " Plug 'tclem/vim-arduino'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }          " Latex preview Plug
@@ -61,5 +62,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'zchee/deoplete-clang'
 " Plug 'zchee/deoplete-go'
 " Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-rmarkdown'
 
