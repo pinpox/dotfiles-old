@@ -162,9 +162,6 @@ mktar() { name="${${1:t}:r}"; tar -I pxz -cf "$name".tar.xz "$@"; }
 
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export GEM_HOME=$HOME/.gem
 [ -f ~/.fzf.colors ] && source ~/.fzf.colors
