@@ -1,6 +1,9 @@
 #!/bin/bash
 SERVER=sellerie
-REPOSITORY=binaryplease@$server:/mnt/backup/borgbackup/'{hostname}'
+REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/'{hostname}'
+echo "Using repository $REPOSITORY"
+export BORG_PASSCOMMAND="pass show borg/`hostname`"
+echo $BORG_PASSCOMMAND
 
 # Check for root
 if [ "$EUID" -ne 0 ]
