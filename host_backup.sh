@@ -1,8 +1,15 @@
 #!/bin/bash
 SERVER=sellerie
-REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/`hostname`
+if [[ $SERVER -eq $(hostname) ]]; then
+	REPOSITORY=/mnt/backup/borgbackup/$(hostname)
+else
+	REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/$(hostname)
+fi
+
 echo "Using repository $REPOSITORY"
-export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/`hostname`"
+
+export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/$(hostname)"
+echo $BORG_PASSCOMMAND
 
 # Check for root
 if [ "$EUID" -ne 0 ]
@@ -25,7 +32,7 @@ pacman -Qe > /home/binaryplease/installed_packages_list.txt
 echo "Creating backup..."
 borg create -v --progress --stats \
 	--compression lz4 \
-	$REPOSITORY::'{hostname}-{now:%Y-%m-%d}' \
+	"$REPOSITORY::'{hostname}-{now:%Y-%m-%d}'" \
 	/etc \
 	/home \
 	/root \
@@ -35,7 +42,7 @@ borg create -v --progress --stats \
 	--exclude '*.pyc'
 
 echo "Deleting old backups..."
-borg prune -v $REPOSITORY --prefix '{hostname}-' --keep-daily=3 --keep-weekly=2 --keep-monthly=6
+borg prune -v "$REPOSITORY" --prefix '{hostname}-' --keep-daily=3 --keep-weekly=2 --keep-monthly=6
 
 echo "Deleting package list..."
 rm -rf /home/binaryplease/installed_packages_list.txt
