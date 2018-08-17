@@ -1,9 +1,8 @@
 #!/bin/bash
 SERVER=sellerie
-REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/'{hostname}'
+REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/`hostname`
 echo "Using repository $REPOSITORY"
-export BORG_PASSCOMMAND="pass show borg/`hostname`"
-echo $BORG_PASSCOMMAND
+export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/`hostname`"
 
 # Check for root
 if [ "$EUID" -ne 0 ]
@@ -11,10 +10,11 @@ then echo "Please run as root"
 	exit
 fi
 
-if ping -c1 -W1 sellerie; then
-	echo "Backup server $server is reachable, continuing"
+# Check if backup server is reachable
+if ping -c1 -W1 $SERVER; then
+	echo "Backup server $SERVER is reachable, continuing"
 else
-	echo "Backup server $server is down, exiting."
+	echo "Backup server $SERVER is down, exiting."
 	exit
 fi
 
