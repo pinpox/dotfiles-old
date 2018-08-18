@@ -31,7 +31,7 @@ set ruler                      " show the cursor position all the time
 set scrolloff=5                " show lines above and below when scrolling
 set showcmd                    " display incomplete commands
 set smartcase                  " Case sensitive then capital is typed
-set synmaxcol=100              " Maximum length of syntax highlighting
+set synmaxcol=200              " Maximum length of syntax highlighting
 set tabstop=4                  " A tab is displayed 4 collumns wide
 set softtabstop=4              " Size of a tab
 set shiftwidth=4               " Size of a tab
