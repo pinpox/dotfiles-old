@@ -1,6 +1,7 @@
 #!/bin/bash
 SERVER=sellerie
-if [[ $SERVER -eq $(hostname) ]]; then
+if [[ $SERVER = $(hostname) ]]; then
+	echo "local repo"
 	REPOSITORY=/mnt/backup/borgbackup/$(hostname)
 else
 	REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/$(hostname)

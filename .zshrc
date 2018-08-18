@@ -33,17 +33,17 @@ zle -N down-line-or-beginning-search
 export EDITOR=/usr/bin/nvim
 export GOPATH=~/.go
 export PATH="$PATH:\
-	/usr/bin/core_perl:\
-	/usr/bin/site_perl:\
-	/usr/bin/vendor_perl:\
-	/usr/bin:\
-	~/.go/bin:\
-	/usr/lib/jvm/default/bin:\
-	/usr/local/bin:\
-	.local/bin:\
-	/home/binaryplease/.cargo/bin:\
-	/home/binaryplease/.local/bin:\
-	/usr/local/sbin"
+/usr/bin/core_perl:\
+/usr/bin/site_perl:\
+/usr/bin/vendor_perl:\
+/usr/bin:\
+/home/binaryplease/.go/bin:\
+/usr/lib/jvm/default/bin:\
+/usr/local/bin:\
+.local/bin:\
+/home/binaryplease/.cargo/bin:\
+/home/binaryplease/.local/bin:\
+/usr/local/sbin"
 
 export VISUAL=/usr/bin/nvim
 
@@ -165,3 +165,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export GEM_HOME=$HOME/.gem
 [ -f ~/.fzf.colors ] && source ~/.fzf.colors
+
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
