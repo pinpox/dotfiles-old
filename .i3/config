@@ -35,7 +35,7 @@ exec_always setxkbmap -layout us,us -variant colemak, -option grp:alt_shift_togg
 exec_always nitrogen --restore
 exec twmnd
 exec nm-applet
-exec blueman-applet
+# exec blueman-applet
 exec_always ~/.screenlayout/default.sh
 exec_always ~/.local/bin/launch_polybar
 
