@@ -1,36 +1,44 @@
 #!/bin/bash
+
 SERVER=sellerie
+export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/$(hostname)"
+
+print_colored() {
+	COLOR_RED='\33[0;31m'
+	COLOR_GREEN='\33[0;32m'
+	COLOR_YELLOW='\33[1;33m'
+	NC='\033[0m'
+	printf "$2$1${NC}\n"
+}
+
+# Check for root
+if [ "$EUID" -ne 0 ]
+then print_colored "Please run as root" $COLOR_RED
+	exit
+fi
+
 if [[ $SERVER = $(hostname) ]]; then
-	echo "local repo"
 	REPOSITORY=/mnt/backup/borgbackup/$(hostname)
 else
 	REPOSITORY=binaryplease@$SERVER:/mnt/backup/borgbackup/$(hostname)
 fi
 
-echo "Using repository $REPOSITORY"
-
-export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/$(hostname)"
-echo $BORG_PASSCOMMAND
-
-# Check for root
-if [ "$EUID" -ne 0 ]
-then echo "Please run as root"
-	exit
-fi
+print_colored "Using repository $REPOSITORY\n" $COLOR_GREEN
 
 # Check if backup server is reachable
+print_colored "Checking if backup server is reachable..." $COLOR_GREEN
 if ping -c1 -W1 $SERVER; then
-	echo "Backup server $SERVER is reachable, continuing"
+	print_colored "Backup server $SERVER is reachable, continuing" $COLOR_GREEN
 else
-	echo "Backup server $SERVER is down, exiting."
+	print_colored "Backup server $SERVER is down, exiting." $COLOR_RED
 	exit
 fi
 
 # Backup list of installes packages
-echo "Creating package list..."
+print_colored "Creating package list..." $COLOR_GREEN
 pacman -Qe > /home/binaryplease/installed_packages_list.txt
 
-echo "Creating backup..."
+print_colored "Creating backup..." $COLOR_GREEN
 borg create -v --progress --stats \
 	--compression lz4 \
 	"$REPOSITORY::'{hostname}-{now:%Y-%m-%d}'" \
@@ -42,9 +50,9 @@ borg create -v --progress --stats \
 	--exclude '/home/*/.cache' \
 	--exclude '*.pyc'
 
-echo "Deleting old backups..."
+print_colored "Deleting old backups..." $COLOR_GREEN
 borg prune -v "$REPOSITORY" --prefix '{hostname}-' --keep-daily=3 --keep-weekly=2 --keep-monthly=6
 
-echo "Deleting package list..."
+print_colored "Deleting package list..." $COLOR_GREEN
 rm -rf /home/binaryplease/installed_packages_list.txt
 
