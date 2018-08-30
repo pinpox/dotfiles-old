@@ -204,7 +204,7 @@ client.focused_inactive $base02 $base02 $base03 $base01
 client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base08
 
-bindsym $mod+p exec rofi -show combi -lines 7 -eh 1 -bw 0  -fullscreen -padding 200
-bindsym $mod+Shift+p exec rofi-pass -show combi -lines 7 -eh 3 -bw 0
+bindsym $mod+p exec rofi -show combi -lines 7 -eh 1 -bw 0  -fullscreen -padding 200 -matching fuzzy
+bindsym $mod+Shift+p exec rofi-pass -show combi -lines 7 -eh 3 -bw 0 -matching fuzzy
 
 # vim:filetype=i3
