@@ -49,12 +49,14 @@ export VISUAL=/usr/bin/nvim
 
 
 
+# Dynamic loading (slower)
+# source <(antibody init)
+# antibody bundle < ~/.zsh_plugins
 
-source <(antibody init)
-
-antibody bundle < ~/.zsh_plugins
-
-# source ~/.zsh_plugins.sh
+# Static loading, run:
+# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# if new plugins are added
+source ~/.zsh_plugins.sh
 
 
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search

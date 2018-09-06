@@ -1,0 +1,25 @@
+zsh-users/zsh-completions
+mafredri/zsh-async
+arzzen/calc.plugin.zsh
+rupa/z
+
+# From Oh-my-ZSH
+robbyrussell/oh-my-zsh folder:lib/completion
+robbyrussell/oh-my-zsh folder:lib/colorize
+robbyrussell/oh-my-zsh folder:lib/colored-man-pages
+robbyrussell/oh-my-zsh folder:lib/completion
+
+# From Prezto
+sorin-ionescu/prezto
+sorin-ionescu/prezto folder:modules/utility
+sorin-ionescu/prezto folder:modules/completion
+sorin-ionescu/prezto folder:modules/environment
+sorin-ionescu/prezto folder:modules/terminal
+sorin-ionescu/prezto folder:modules/editor
+sorin-ionescu/prezto folder:modules/history
+sorin-ionescu/prezto folder:modules/directory
+sorin-ionescu/prezto folder:modules/spectrum
+
+sindresorhus/pure
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
