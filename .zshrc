@@ -45,48 +45,16 @@ export PATH="$PATH:\
 export VISUAL=/usr/bin/nvim
 
 
-# zplug
-if [[ ! -d ~/.zplug ]]; then
-	git clone https://github.com/zplug/zplug ~/.zplug
-	source ~/.zplug/init.zsh && zplug update --self
-fi
 
-source ~/.zplug/init.zsh
+# Dynamic loading (slower)
+# source <(antibody init)
+# antibody bundle < ~/.zsh_plugins
 
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-zplug "arzzen/calc.plugin.zsh"
-zplug "rupa/z", use:z.sh
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/colorize", from:oh-my-zsh
-zplug "lib/colored-man-pages", from:oh-my-zsh
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
+# Static loading, run:
+# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# if new plugins are added
+source ~/.zsh_plugins.sh
 
-# Also prezto
-zplug "modules/environment", from:prezto
-zplug "modules/terminal", from:prezto
-zplug "modules/editor", from:prezto
-zplug "modules/history", from:prezto
-zplug "modules/directory", from:prezto
-zplug "modules/spectrum", from:prezto
-zplug "modules/utility", from:prezto
-zplug "modules/completion", from:prezto
-zplug "lib/completion", from:oh-my-zsh, ignore:oh-my-zsh.sh
-
-# Install packages that have not been installed yet
-if ! zplug check --verbose; then
-	printf "Install? [y/N]: "
-	if read -q; then
-		echo; zplug install
-	else
-		echo
-	fi
-fi
-
-zplug load
 
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
 bindkey "$terminfo[kcud1]" down-line-or-beginning-search
