@@ -1,9 +1,6 @@
 # http://bit.do/zshconfig
 # https://ptpb.pw/MCeR
 
-# Prevents grep options deprecation message
-alias grep="/usr/bin/grep --color=auto $GREP_OPTIONS"
-unset GREP_OPTIONS
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -169,3 +166,6 @@ export GEM_HOME=$HOME/.gem
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
+
+ alias grep="/usr/bin/grep --color=auto $GREP_OPTIONS"
+# unset GREP_OPTIONS
