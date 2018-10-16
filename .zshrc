@@ -1,6 +1,9 @@
 # http://bit.do/zshconfig
 # https://ptpb.pw/MCeR
 
+# Prevents grep options deprecation message
+alias grep="/usr/bin/grep --color=auto $GREP_OPTIONS"
+unset GREP_OPTIONS
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -51,7 +54,7 @@ export VISUAL=/usr/bin/nvim
 # antibody bundle < ~/.zsh_plugins
 
 # Static loading, run:
-# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# antibody bundle < ~/.zsh_plugins > ~/.zsh_plugins.sh
 # if new plugins are added
 source ~/.zsh_plugins.sh
 
@@ -134,6 +137,3 @@ export GEM_HOME=$HOME/.gem
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
-
- alias grep="/usr/bin/grep --color=auto $GREP_OPTIONS"
-# unset GREP_OPTIONS
