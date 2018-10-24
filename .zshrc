@@ -54,7 +54,7 @@ export VISUAL=/usr/bin/nvim
 # antibody bundle < ~/.zsh_plugins
 
 # Static loading, run:
-# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# antibody bundle < ~/.zsh_plugins > ~/.zsh_plugins.sh
 # if new plugins are added
 source ~/.zsh_plugins.sh
 

@@ -1,4 +1,4 @@
 #include ".Xresources.d/colors"
-Xft*dpi:                141
+!Xft*dpi:                141
 Xft*antialias:          true
 Xft*hinting:            full
