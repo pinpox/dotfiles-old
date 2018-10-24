@@ -1,6 +1,14 @@
 #!/bin/bash
-GIT_REPO="https://gitlab.com/binaryplease/dotfiles/"
 CONF_DIR_NAME=".dotfiles"
+
+
+if [[ $(ssh -T git@github.com) == *"success"* ]]; then
+	echo "Using SSH-authentication to connect to github"
+	GIT_REPO="git@github.com:binaryplease/dotfiles.git"
+else
+	echo "Using HTTPS-authentication to connect to github"
+	GIT_REPO="https://gitlab.com/binaryplease/dotfiles/"
+fi
 
 function backup_conf() {
 	while read fn
@@ -59,7 +67,6 @@ function install_base16_manager() {
 function check_dependencies() {
 	declare -a arr=("git" "base16-manager" "nvim")
 
-	## now loop through the above array
 	for i in "${arr[@]}"
 	do
 		if ! [ -x "$(command -v $i)" ]; then
@@ -79,14 +86,42 @@ function setup_colors() {
 	base16-manager install chriskempson/base16-xresources
 	base16-manager install khamer/base16-termite
 	base16-manager install khamer/base16-dunst
-	base16-manager set materia
+	base16-manager set seti
 }
 
-check_dependencies
-setup_dotfiles
-setup_vim
-set_zsh
-setup_colors
-tic -x termite.terminfo
 
+
+read -p "Check for missing dependencies? [Y/n]" -n 1 -r
+echo
+if [[ $REPLY =~ ^(y|Y| ) ]] || [[ -z $REPLY ]];
+then
+	check_dependencies
+fi
+
+read -p "Setup dotfiles? [Y/n]" -n 1 -r
+echo
+if [[ $REPLY =~ ^(y|Y| ) ]] || [[ -z $REPLY ]];
+then
+	setup_dotfiles
+fi
+read -p "Setup VIM/Neovim? [Y/n]" -n 1 -r
+echo
+if [[ $REPLY =~ ^(y|Y| ) ]] || [[ -z $REPLY ]];
+then
+	setup_vim
+fi
+
+read -p "Setup colors with base16-manager (base16-seti)? [Y/n]" -n 1 -r
+echo
+if [[ $REPLY =~ ^(y|Y| ) ]] || [[ -z $REPLY ]];
+then
+	setup_colors
+fi
+
+read -p "Install termite terminfo? [Y/n]" -n 1 -r
+echo
+if [[ $REPLY =~ ^(y|Y| ) ]] || [[ -z $REPLY ]];
+then
+	tic -x termite.terminfo
+fi
 
