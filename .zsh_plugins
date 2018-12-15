@@ -1,13 +1,9 @@
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 mafredri/zsh-async
-arzzen/calc.plugin.zsh
 rupa/z
 
 # From Oh-my-ZSH
-robbyrussell/oh-my-zsh folder:lib/completion
-robbyrussell/oh-my-zsh folder:lib/colorize
-robbyrussell/oh-my-zsh folder:lib/colored-man-pages
 robbyrussell/oh-my-zsh folder:lib/completion
 
 # From Prezto
@@ -19,7 +15,9 @@ sorin-ionescu/prezto folder:modules/terminal
 sorin-ionescu/prezto folder:modules/editor
 sorin-ionescu/prezto folder:modules/history
 sorin-ionescu/prezto folder:modules/directory
-sorin-ionescu/prezto folder:modules/spectrum
+sorin-ionescu/prezto folder:modules/syntax-highlighting
+sorin-ionescu/prezto folder:modules/zsh-history-substring-search
 
+# # Other
 sindresorhus/pure
-zsh-users/zsh-history-substring-search
+ael-code/zsh-colored-man-pages
