@@ -10,7 +10,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	done
 	unset f
 fi
-
 xset r rate 200 100
 export TERMINAL=termite
 xrdb ~/.Xresources
@@ -20,10 +19,25 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 xmodmap .Xmodmap
 
 export SSH_AUTH_SOCK
-xbindkeys
 exec i3
+# exec bspwm
+#exec dbus-launch xmonad
 
-if [ -x /usr/bin/nm-applet ] ; then
-nm-applet --sm-disable &
-fi
+# exec gnome-session
+# exec startkde
+# exec startxfce4
+# ...or the Window Manager of your choice
+#rdb -merge .Xresources
 
+# Set up an icon tray
+#stalonetray &
+
+# Fire up apps
+
+#xscreensaver -no-splash &
+
+#if [ -x /usr/bin/nm-applet ] ; then
+#nm-applet --sm-disable &
+#fi
+
+#exec xmonad
