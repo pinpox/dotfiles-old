@@ -57,11 +57,11 @@ function setup_vim() {
 
 function install_base16_manager() {
 	base16-manager install 0xdec/base16-rofi
-	base16-manager instajj chriskempson/base16-vim
-	base16-manager instajj chriskempson/base16-xresources
-	base16-manager instajj khamer/base16-dunst
-	base16-manager instajj khamer/base16-termite
-	base16-manager instajj nicodebo/base16-fzf
+	base16-manager install chriskempson/base16-vim
+	base16-manager install chriskempson/base16-xresources
+	base16-manager install khamer/base16-dunst
+	base16-manager install khamer/base16-termite
+	base16-manager install nicodebo/base16-fzf
 }
 
 function check_dependencies() {
@@ -86,7 +86,7 @@ function setup_colors() {
 	base16-manager install chriskempson/base16-xresources
 	base16-manager install khamer/base16-termite
 	base16-manager install khamer/base16-dunst
-	base16-manager set seti
+	base16-manager set snazzy
 }
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVER=sellerie
+SERVER=pablo-tools.duckdns.org
 export BORG_PASSCOMMAND="sudo -u binaryplease pass show borg/$(hostname)"
 
 print_colored() {
@@ -42,17 +42,18 @@ print_colored "Creating backup..." $COLOR_GREEN
 borg create -v --progress --stats \
 	--compression lz4 \
 	"$REPOSITORY::'{hostname}-{now:%Y-%m-%d}'" \
-	/etc \
-	/home \
-	/root \
-	--exclude '/home/*/.config/chromium' \
-	--exclude '/home/*/.local/share/Trash' \
-	--exclude '/home/*/.cache' \
-	--exclude '*.pyc'
+		/etc \
+		/home \
+		/root \
+			--exclude "/home/*/.config/chromium" \
+		--exclude "/home/*/.local/share/Trash" \
+		--exclude "/home/*/.cache" \
+		--exclude "/home/*/VirtualBox VMs" \
+		--exclude "*.pyc" \
+	
+	print_colored "Deleting old backups..." $COLOR_GREEN
+	borg prune -v "$REPOSITORY" --prefix '{hostname}-' --keep-daily=3 --keep-weekly=2 --keep-monthly=6
 
-print_colored "Deleting old backups..." $COLOR_GREEN
-borg prune -v "$REPOSITORY" --prefix '{hostname}-' --keep-daily=3 --keep-weekly=2 --keep-monthly=6
-
-print_colored "Deleting package list..." $COLOR_GREEN
-rm -rf /home/binaryplease/installed_packages_list.txt
+	print_colored "Deleting package list..." $COLOR_GREEN
+	rm -rf /home/binaryplease/installed_packages_list.txt
 
