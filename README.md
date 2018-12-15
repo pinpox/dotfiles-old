@@ -22,6 +22,5 @@ curl -Lks https://gitlab.com/binaryplease/dotfiles/raw/master/bootstrap.sh | /bi
 ```
 
 # TODO
+- setup weechat
 - Install vim/neovim plugins
-- Set shell to zsh
-- Fix neovim colors in SSH

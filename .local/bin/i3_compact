@@ -1,9 +1,0 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import i3ipc
-
-i3 = i3ipc.Connection()
-
-for i, ws in enumerate(i3.get_workspaces()):
-    i3.command("rename workspace "+str(ws.num)+" to " +str(i+1))

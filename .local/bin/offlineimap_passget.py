@@ -1,1 +1,0 @@
-../../../dotfiles/offlineimap_passget.py
