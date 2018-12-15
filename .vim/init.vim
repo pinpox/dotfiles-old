@@ -40,6 +40,7 @@ set undodir=~/.vimtmp          " Dir for undofiles, same dir as the tempdir
 set wildmenu                   " Complete commands
 set wrapscan                   " Wrap when searching to beginning
 set path+=**                   " Search down into subfolders, provides tab-completion for all file-related tasks
+set splitbelow splitright      " Spit below and right
 syntax enable                  " enable syntax highlighting
 
 " MISC:
@@ -64,7 +65,6 @@ if has("autocmd")
 endif
 
 set listchars=tab:\|\ ,trail:·,nbsp:· " Display extra whitespace, show tabs as bar (indent-guides)
-" set listchars=tab:\│\ ,trail:·,nbsp:· " Display extra whitespace, show tabs as bar (indent-guides)
 set list
 
 " FILE BROWSING:
@@ -83,32 +83,10 @@ source ~/.vim/mappings.vim
 "PLUGIN OPTIONS:
 "
 let g:UltiSnipsExpandTrigger="<tab>"
-
-" deoplete
 let g:deoplete#enable_at_startup = 1		" Use deoplete.
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
-
-if !exists('g:deoplete#omni_patterns')
-    let g:deoplete#omni_patterns = {}
-endif
-
-let g:deoplete#omni_patterns.tex =
-            \ '\v\\%('
-            \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-            \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
-            \ . '|hyperref\s*\[[^]]*'
-            \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-            \ . '|%(include%(only)?|input)\s*\{[^}]*'
-            \ . ')\m'
-
-" Change clang binary path
-call deoplete#custom#var('clangx', 'clang_binary', '/usr/local/bin/clang')
-
-" Change clang options
-call deoplete#custom#var('clangx', 'default_c_options', '')
-call deoplete#custom#var('clangx', 'default_cpp_options', '')
 let g:arduino_programmer = 'arduino:avrispmkii'                 " arduino programmer
 let g:arduino_dir = '/usr/share/arduino'
 let g:arduino_args = '--verbose-upload'
@@ -150,6 +128,17 @@ endfunction
 command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>, <line2>)
 
 
+if !exists('g:deoplete#omni_patterns')
+    let g:deoplete#omni_patterns = {}
+endif
+let g:deoplete#omni_patterns.tex =
+            \ '\v\\%('
+            \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+            \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+            \ . '|hyperref\s*\[[^]]*'
+            \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+            \ . '|%(include%(only)?|input)\s*\{[^}]*'
+            \ . ')\m'
 
 let g:one_allow_italics = 1 " I love italic for comments
 " let g:airline_theme='one'

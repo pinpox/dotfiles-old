@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/binaryplease/.config/neomutt/accounts'
+let g:netrw_dirhist_2='/home/binaryplease/Projects/dotfiles-ansible/roles/ascii-issue'
+let g:netrw_dirhist_3='/home/binaryplease/Projects/dotfiles-ansible/roles/ascii-issue/tasks'
+let g:netrw_dirhist_4='/home/binaryplease/Projects/dotfiles-ansible/roles/ascii-issue'
+let g:netrw_dirhist_5='/home/binaryplease/Projects/dotfiles-ansible/roles/common/tasks'
+let g:netrw_dirhist_6='/home/binaryplease/Projects/dotfiles-ansible/roles'

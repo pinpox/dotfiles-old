@@ -12,12 +12,13 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }          " Latex preview 
 Plug 'lukaszkorecki/workflowish'
 " Plug 'vim-latex/vim-latex'
 Plug 'AndrewRadev/switch.vim'                                     " Switch segments of text with predefined replacements
-Plug 'ap/vim-buftabline'                                          " Forget Vim tabs, now you can have buffer tabs
+Plug 'ap/vim-buftabline'                                          " Forget Vim tabs, now you can have buffer tabs 
 Plug 'Chiel92/vim-autoformat'                                     " Autoformat files integrating existing code formatters
 Plug 'vim-scripts/BufOnly.vim'									  " Close all buffers except the current
 
 Plug 'OrangeT/vim-csharp', {'for': 'cs'}                          " Csharp syntax
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}                " I3-config syntax
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}       " Autocompletion
 Plug 'SirVer/ultisnips'                                           " Snippet engine
 Plug 'airblade/vim-gitgutter'                                     " Shows a git diff in the gutter
 " Plug 'benekastah/neomake'                                         " Linter/maker
@@ -58,18 +59,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/Align'                                          " Dependency for sqlformatter
 Plug 'vimwiki/vimwiki'
 Plug 'rhysd/vim-grammarous'
+Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-go'
 " Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'vim-pandoc/vim-rmarkdown'
 
-
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'Shougo/deoplete-clangx'
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'Shougo/deoplete-clangx'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif

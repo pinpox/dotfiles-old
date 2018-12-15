@@ -4,4 +4,7 @@ let g:switch_custom_definitions =
 						\   [ 'on', 'off'],
 						\   ['_', '#'],
 						\   ['LOW', 'HIGH'],
+						\	['ue', 'ü'],
+						\	['ae', 'ä'],
+						\	['oe', 'ö']
 						\ ]
