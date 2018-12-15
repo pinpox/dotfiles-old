@@ -1,14 +1,5 @@
 # Installation
 
-## Dependencies
-- git
-- ruby
-- python
-  - python-neovim
-- neovim
-- zsh
-- fzf
-
 ## Setup
 
 To setup the dotsfiles on a new system run the setup script using
